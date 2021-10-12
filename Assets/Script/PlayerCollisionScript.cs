@@ -6,27 +6,56 @@ using UnityEngine.SceneManagement;
 
 public class PlayerCollisionScript : MonoBehaviour
 {
-    public int score;
-    public Text scoreText;
+    private float scorevalue;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float totalcoins;
 
-    // Update is called once per frame
+    public float timeleft;
+
+    public float timeRemaining;
+
+    public Text ScoreText;
+    public Text TimerText;
+
+    public GameObject explosion;
+
+    private float TimerValue;
+
     void Update()
     {
-        scoreText.text = "Score: " + score;
+        timeleft -= Time.deltaTime;
+
+        timeRemaining = Mathf.FloorToInt(timeleft % 60);
+
+        TimerText.text = "Timer : " + timeRemaining.ToString();
+
+        if(scorevalue==totalcoins)
+        {
+            if(timeleft<=TimerValue)
+            {
+                SceneManager.LoadScene("GameWinScene");
+            }
+        }
+
+        else if(timeleft <=0)
+        {
+            SceneManager.LoadScene("GameLoseScene");
+        }
+
+        ScoreText.text = "Score: " + scorevalue;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.tag.Equals("Coin"))
         {
-            score += 10;
+            Instantiate(explosion, collision.gameObject.transform.position, Quaternion.identity);
+            scorevalue += 10;
             Destroy(collision.gameObject);
+            if (scorevalue == totalcoins)
+            {
+                  SceneManager.LoadScene("GameWinScene");
+            }
         }
     }
 
