@@ -1471,7 +1471,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalcoins: 60
-  timeleft: 60
+  timeleft: 20
   timeRemaining: 0
   ScoreText: {fileID: 325518149}
   TimerText: {fileID: 1912781990}

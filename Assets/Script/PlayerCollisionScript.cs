@@ -31,7 +31,7 @@ public class PlayerCollisionScript : MonoBehaviour
 
         if(scorevalue==totalcoins)
         {
-            if(timeleft<=TimerValue)
+            if(timeleft>=TimerValue)
             {
                 SceneManager.LoadScene("GameWinScene");
             }
