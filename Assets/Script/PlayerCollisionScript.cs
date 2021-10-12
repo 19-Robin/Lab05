@@ -43,6 +43,11 @@ public class PlayerCollisionScript : MonoBehaviour
         }
 
         ScoreText.text = "Score: " + scorevalue;
+
+        if(Input.GetKey(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
